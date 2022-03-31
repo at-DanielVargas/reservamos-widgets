@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
     <title>Reservamos Widgets</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css" integrity="sha512-IgmDkwzs96t4SrChW29No3NXBIBv8baW490zk5aXvhCD8vuZM3yUSkbyTBcXohkySecyzIrUwiF/qV0cuPcL3Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com"> 
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
@@ -11,6 +12,21 @@
     <script nomodule src="/build/reservamos-widgets.js"></script>
   </head>
   <body>
-    <reservamos-forecast city="Cozumel"></reservamos-forecast>
+
+    <reservamos-search></reservamos-search>
+    <reservamos-forecast></reservamos-forecast>
+  
+    <script>
+        
+        const searchEl$ = document.querySelector('reservamos-search');
+        const forecastEl$ = document.querySelector('reservamos-forecast');
+
+
+        searchEl$.addEventListener('search', (event) => {
+          //forecastEl$.city = event.detail.city
+          console.log(event);
+        });
+
+    </script>
   </body>
 </html>

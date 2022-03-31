@@ -6,34 +6,76 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface ReservamosForecast {
+    interface ReservamosApp {
         "city": string;
+    }
+    interface ReservamosForecast {
+    }
+    interface ReservamosForecastDay {
+    }
+    interface ReservamosSearch {
+        "placeholder": string;
     }
 }
 declare global {
+    interface HTMLReservamosAppElement extends Components.ReservamosApp, HTMLStencilElement {
+    }
+    var HTMLReservamosAppElement: {
+        prototype: HTMLReservamosAppElement;
+        new (): HTMLReservamosAppElement;
+    };
     interface HTMLReservamosForecastElement extends Components.ReservamosForecast, HTMLStencilElement {
     }
     var HTMLReservamosForecastElement: {
         prototype: HTMLReservamosForecastElement;
         new (): HTMLReservamosForecastElement;
     };
+    interface HTMLReservamosForecastDayElement extends Components.ReservamosForecastDay, HTMLStencilElement {
+    }
+    var HTMLReservamosForecastDayElement: {
+        prototype: HTMLReservamosForecastDayElement;
+        new (): HTMLReservamosForecastDayElement;
+    };
+    interface HTMLReservamosSearchElement extends Components.ReservamosSearch, HTMLStencilElement {
+    }
+    var HTMLReservamosSearchElement: {
+        prototype: HTMLReservamosSearchElement;
+        new (): HTMLReservamosSearchElement;
+    };
     interface HTMLElementTagNameMap {
+        "reservamos-app": HTMLReservamosAppElement;
         "reservamos-forecast": HTMLReservamosForecastElement;
+        "reservamos-forecast-day": HTMLReservamosForecastDayElement;
+        "reservamos-search": HTMLReservamosSearchElement;
     }
 }
 declare namespace LocalJSX {
-    interface ReservamosForecast {
+    interface ReservamosApp {
         "city"?: string;
     }
+    interface ReservamosForecast {
+    }
+    interface ReservamosForecastDay {
+    }
+    interface ReservamosSearch {
+        "onSearch"?: (event: CustomEvent<string>) => void;
+        "placeholder"?: string;
+    }
     interface IntrinsicElements {
+        "reservamos-app": ReservamosApp;
         "reservamos-forecast": ReservamosForecast;
+        "reservamos-forecast-day": ReservamosForecastDay;
+        "reservamos-search": ReservamosSearch;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "reservamos-app": LocalJSX.ReservamosApp & JSXBase.HTMLAttributes<HTMLReservamosAppElement>;
             "reservamos-forecast": LocalJSX.ReservamosForecast & JSXBase.HTMLAttributes<HTMLReservamosForecastElement>;
+            "reservamos-forecast-day": LocalJSX.ReservamosForecastDay & JSXBase.HTMLAttributes<HTMLReservamosForecastDayElement>;
+            "reservamos-search": LocalJSX.ReservamosSearch & JSXBase.HTMLAttributes<HTMLReservamosSearchElement>;
         }
     }
 }
