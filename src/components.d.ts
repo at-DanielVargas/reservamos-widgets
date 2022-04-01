@@ -5,16 +5,21 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { ICoordiantes } from "./interfaces/coordinates";
+import { ICity } from "./interfaces/city";
 export namespace Components {
     interface ReservamosApp {
         "city": string;
     }
     interface ReservamosForecast {
+        "city": string;
     }
     interface ReservamosForecastDay {
+        "cords": ICoordiantes;
     }
     interface ReservamosSearch {
         "placeholder": string;
+        "url": string;
     }
 }
 declare global {
@@ -54,12 +59,15 @@ declare namespace LocalJSX {
         "city"?: string;
     }
     interface ReservamosForecast {
+        "city"?: string;
     }
     interface ReservamosForecastDay {
+        "cords"?: ICoordiantes;
     }
     interface ReservamosSearch {
-        "onSearch"?: (event: CustomEvent<string>) => void;
+        "onSearch"?: (event: CustomEvent<ICity>) => void;
         "placeholder"?: string;
+        "url"?: string;
     }
     interface IntrinsicElements {
         "reservamos-app": ReservamosApp;

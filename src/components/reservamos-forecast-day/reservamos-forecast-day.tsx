@@ -1,4 +1,5 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, h, Prop } from '@stencil/core';
+import { ICoordiantes } from '../../interfaces/coordinates';
 
 @Component({
   tag: 'reservamos-forecast-day',
@@ -6,6 +7,7 @@ import { Component, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class ReservamosForecastDay {
+  @Prop() cords: ICoordiantes;
 
   render() {
     return (
@@ -14,5 +16,4 @@ export class ReservamosForecastDay {
       </Host>
     );
   }
-
 }

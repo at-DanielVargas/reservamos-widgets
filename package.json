@@ -27,11 +27,13 @@
   },
   "dependencies": {
     "@stencil/core": "^2.13.0",
-    "bulma": "^0.9.3"
+    "bulma": "^0.9.3",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@stencil/sass": "^1.5.2",
     "@types/jest": "^27.0.3",
+    "@types/lodash": "^4.14.181",
     "jest": "^27.4.5",
     "jest-cli": "^27.4.5",
     "prettier": "^2.6.1",
