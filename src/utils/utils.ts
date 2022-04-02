@@ -21,3 +21,15 @@ export const searchCity = (city: string): Promise<ICity[]> => {
   });
 };
 
+export const searchForecastFor(coords: ICoordinates): Promise<any> => {
+  return new Promise((resolve, reject) => {
+    let url = ``;
+    fetch(url)
+      .then((response: Response) => response.json())
+      .then(data => {
+        resolve(data);
+      }).catch(err => {
+        reject(err);
+      })
+  });
+}

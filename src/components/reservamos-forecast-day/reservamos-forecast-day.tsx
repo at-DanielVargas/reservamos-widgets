@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, Host, h, Prop, Watch } from '@stencil/core';
 import { ICoordiantes } from '../../interfaces/coordinates';
 
 @Component({
@@ -7,7 +7,16 @@ import { ICoordiantes } from '../../interfaces/coordinates';
   shadow: true,
 })
 export class ReservamosForecastDay {
-  @Prop() cords: ICoordiantes;
+  @Prop() coords: ICoordiantes;
+
+  @Watch('coords')
+  getForecast(coords: ICoordiantes): void {
+    searchForecastFor(coords).then(response => {
+      console.log(response)
+    }).catch(error => {
+      console.log(error)
+    }) 
+  }
 
   render() {
     return (

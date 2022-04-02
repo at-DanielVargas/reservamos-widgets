@@ -12,8 +12,7 @@ export class ReservamosForecast {
   @Prop() city: string;
 
   @Watch('city')
-  searchCities(city: string, oldCity: string): void {
-    console.log(city)
+  searchCities(city: string): void {
     searchCity(city).then(results => {
       console.log(results)
     }).catch(error => {

@@ -5,7 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { ICoordiantes } from "./interfaces/coordinates";
+import { ICoordiantes, ICoordinates } from "./interfaces/coordinates";
 import { ICity } from "./interfaces/city";
 export namespace Components {
     interface ReservamosApp {
@@ -66,6 +66,7 @@ declare namespace LocalJSX {
     }
     interface ReservamosSearch {
         "onSearch"?: (event: CustomEvent<ICity>) => void;
+        "onSelectedValue"?: (event: CustomEvent<ICoordinates>) => void;
         "placeholder"?: string;
         "url"?: string;
     }
