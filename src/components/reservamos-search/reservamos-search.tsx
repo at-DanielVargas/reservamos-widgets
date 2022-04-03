@@ -11,16 +11,14 @@ import { searchCity } from '../../utils/utils';
 })
 export class ReservamosSearch {
   @Event() search: EventEmitter<ICity>;
-  @Event() selectedValue: EventEmitter<ICoordinates>;
+  @Event() suggestionSelected: EventEmitter<ICoordinates>;
   @Prop() url: string;
   @Prop() placeholder: string = '';
   @State() suggestions: boolean = false;
   @State() cities: ICity[] = [];
   @State() suggestionIndex: number = 0;
 
-
   handleNavigateCities(e: KeyboardEvent): void {
-    console.log(e)
     if (e.keyCode === 40 && this.suggestionIndex < this.cities.length - 1) {
       this.suggestionIndex++;
       return;
@@ -32,12 +30,17 @@ export class ReservamosSearch {
     }
 
     if (e.keyCode === 13) {
-      this.selectedValue.emit();
+      const selectedCity = this.cities[this.suggestionIndex];
+      this.suggestionSelected.emit({
+        latitude: Number(selectedCity.lat),
+        longitude: Number(selectedCity.long),
+      });
+      this.suggestions = false;
     }
   }
 
   handleKeypress = debounce((e: KeyboardEvent) => {
-    if (![40, 39, 37, 38].includes(e.keyCode)) {
+    if (![40, 39, 37, 38, 13].includes(e.keyCode)) {
       const value = (e.target as HTMLInputElement).value;
       if (value !== '') {
         searchCity(value).then(result => {
@@ -55,7 +58,13 @@ export class ReservamosSearch {
       <Host>
         <div class={`dropdown ${this.suggestions && 'is-active'}`}>
           <div class="dropdown-trigger">
-            <input class="input is-normal" onKeyDown={event => this.handleNavigateCities(event)} onKeyUp={event => this.handleKeypress(event)} type="text" placeholder={this.placeholder} />
+            <input
+              class="input is-normal"
+              onKeyDown={event => this.handleNavigateCities(event)}
+              onKeyUp={event => this.handleKeypress(event)}
+              type="text"
+              placeholder={this.placeholder}
+            />
           </div>
           <div class="dropdown-menu" id="dropdown-menu" role="menu">
             <div class="dropdown-content">

@@ -11,6 +11,17 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <style>
+      #home-hero {
+        background-image: url('https://assets-fl.reservamos.mx/assets/home/cover-bg-39a1e8118c30d3ca1b9df37602ae948389ba99214dc8351ebe5fbfa1403840ef.png');
+        background-position: center;
+        background-size: contain;
+        background-repeat: repeat;
+      }
+      reservamos-forecast-day {
+        display: block;
+      }
+    </style>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -18,27 +29,55 @@
     <script nomodule src="/build/reservamos-widgets.js"></script>
   </head>
   <body>
-    <div class="block">
+    <div class="block has-background-link py-4">
       <div class="container is-max-desktop">
         <nav class="level">
           <p class="level-item has-text-centered">
-            <a class="link is-info">Home</a>
+            <a class="link has-text-white">Home</a>
           </p>
           <p class="level-item has-text-centered">
-            <a class="link is-info">Menu</a>
+            <a class="link has-text-white">Menu</a>
           </p>
           <p class="level-item has-text-centered">
-            <img src="https://assets-fl.reservamos.mx/assets/logo-b09feb00a641615eb083fedea266d68ed48e1e46687e198437b7a1aab251860d.svg" alt="" style="height: 30px" />
+            <img src="https://viaje.reservamos.mx/topbar-logo-7f08c46cb181b23b05e50a75c7c5f697.png" alt="" style="height: 30px" />
           </p>
           <p class="level-item has-text-centered">
-            <a class="link is-info">Reservations</a>
+            <a class="link has-text-white">Reservations</a>
           </p>
           <p class="level-item has-text-centered">
-            <a class="link is-info">Contact</a>
+            <a class="link has-text-white">Contact</a>
           </p>
         </nav>
       </div>
     </div>
+
+    <!-- Hero -->
+    <section class="section" id="home-hero">
+      <div class="container is-max-desktop">
+        <h1 class="title">Con Reservamos planear tu viaje es aún más fácil</h1>
+        <h2 class="subtitle">Encuentra transporte, hospedaje y paquetes baratos para viajar por todo México y USA</h2>
+
+        <div class="field has-addons">
+          <p class="control">
+            <button class="button is-active">
+              <span class="icon is-small">
+                <img src="https://widgets.reservamos.mx/search/2.3.1/64dd73f6e9260a6eef603442f6345d96.svg"/>
+              </span>
+              <span>Viajes</span>
+            </button>
+          </p>
+
+          <p class="control">
+            <button class="button">
+              <span class="icon is-small">
+                <img src="https://widgets.reservamos.mx/search/2.3.1/b5e41680fb13bc8b857c2f68866aeaa8.svg"/>
+              </span>
+              <span>Paquetes</span>
+            </button>
+          </p>
+        </div>
+      </div>
+    </section>
 
     <div class="container is-max-desktop">
       <div class="block">
@@ -54,9 +93,9 @@
       const searchEl$ = document.querySelector('reservamos-search');
       const forecastEl$ = document.querySelector('reservamos-forecast');
 
-      searchEl$.addEventListener('search', event => {
-        forecastEl$.setAttribute('city', event.detail);
-        console.log(event);
+      searchEl$.addEventListener('suggestionSelected', event => {
+        forecastEl$.coords = event.detail;
+        forecastEl$.setAttribute('coords', event.detail);
       });
     </script>
   </body>

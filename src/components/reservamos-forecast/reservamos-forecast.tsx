@@ -1,5 +1,7 @@
-import { Component, Host, h, Prop, Watch } from '@stencil/core';
-import {searchCity} from '../../utils/utils';
+import { Component, Host, h, Prop, Watch, State } from '@stencil/core';
+import { ICoordinates } from '../../interfaces/coordinates';
+import { IDay } from '../../interfaces/forecast';
+import { searchForecastFor } from '../../utils/utils';
 
 @Component({
   tag: 'reservamos-forecast',
@@ -7,25 +9,28 @@ import {searchCity} from '../../utils/utils';
   shadow: false,
 })
 export class ReservamosForecast {
+  @Prop({ mutable: true }) coords: ICoordinates;
 
+  @State() forecast: IDay[] = [];
 
-  @Prop() city: string;
-
-  @Watch('city')
-  searchCities(city: string): void {
-    searchCity(city).then(results => {
-      console.log(results)
-    }).catch(error => {
-      console.log(error)
-    })
+  @Watch('coords')
+  getForecast(coords: ICoordinates): void {
+    searchForecastFor(coords).then(result => {
+      this.forecast = result.forecast;
+    });
   }
 
   render() {
     return (
       <Host>
-        <p>{this.city}</p>
+        <nav class="level">
+          {this.forecast.map(day => (
+            <div class="level-item has-text-centered">
+              <reservamos-forecast-day forecastDay={day}></reservamos-forecast-day>
+            </div>
+          ))}
+        </nav>
       </Host>
     );
   }
-
 }
