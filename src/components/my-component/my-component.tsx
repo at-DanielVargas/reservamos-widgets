@@ -21,6 +21,8 @@ export class MyComponent {
           }));
         // .find(match => match.sort_criteria > 0.60)
         console.log(results);
+
+        // hello world
       })
       .catch(err => console.log(err));
   }
